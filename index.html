@@ -1,33 +1,34 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>A Special Surprise for Bhonduuuuu 💖</title>
-  
-  <!-- Google Fonts for cute handwriting & headings -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happiest Birthday Bhonduuuuu! 🎂✨</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ==========================================
+       DESIGN SYSTEM & SCRAPBOOK THEME VARIABLES
+       ========================================== */
     :root {
-      --bg-cream: #FFFDF9;
-      --pastel-pink: #FFE4E8;
-      --pastel-pink-dark: #FFB6C1;
-      --pastel-blue: #E2F0D9;
-      --pastel-blue-light: #EBF4F6;
-      --pastel-purple: #F3E8FF;
-      --pastel-yellow: #FEF9C3;
-      --accent-pink: #FF6B8B;
-      --text-main: #4A4A4A;
-      --text-muted: #7A7A7A;
-      --card-bg: #FFFFFF;
-      --font-main: 'Fredoka', sans-serif;
-      --font-hand: 'Caveat', cursive;
-      --shadow-soft: 0 10px 25px -5px rgba(255, 182, 193, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
-      --shadow-polaroid: 0 12px 20px -5px rgba(0, 0, 0, 0.15), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      --bg-cream: #fbf8f3;
+      --pastel-pink: #ffd6e0;
+      --pastel-pink-dark: #ff85a1;
+      --pastel-blue: #d8f3dc;
+      --pastel-lavender: #e2daf8;
+      --pastel-yellow: #fff3b0;
+      --paper-white: #ffffff;
+      --text-dark: #2b2d42;
+      --text-muted: #6c757d;
+      --tape-color: rgba(255, 255, 255, 0.65);
+      --font-hand: 'Caveat', cursive, sans-serif;
+      --font-display: 'Fredoka', cursive, sans-serif;
+      --font-body: 'Quicksand', sans-serif;
+      --shadow-soft: 0 10px 25px rgba(255, 133, 161, 0.15);
+      --shadow-polaroid: 0 12px 30px rgba(0, 0, 0, 0.08);
+      --radius-card: 20px;
     }
 
     * {
@@ -35,328 +36,250 @@
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
-      user-select: none;
     }
 
     body {
       background-color: var(--bg-cream);
       background-image: 
-        radial-gradient(#ffd6e0 0.75px, transparent 0.75px),
-        radial-gradient(#dbeaff 0.75px, var(--bg-cream) 0.75px);
-      background-size: 30px 30px;
-      background-position: 0 0, 15px 15px;
-      font-family: var(--font-main);
-      color: var(--text-main);
+        radial-gradient(circle at 10% 20%, rgba(255, 214, 224, 0.4) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(216, 243, 220, 0.4) 0%, transparent 20%),
+        radial-gradient(circle at 50% 50%, rgba(226, 218, 248, 0.3) 0%, transparent 50%);
+      color: var(--text-dark);
+      font-family: var(--font-body);
       min-height: 100vh;
       overflow-x: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 0;
-      margin: 0;
-    }
-
-    #app-container {
-      width: 100%;
-      max-width: 440px;
-      min-height: 100vh;
       position: relative;
-      background-color: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      box-shadow: 0 0 30px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
+      padding-bottom: 40px;
     }
 
     /* Floating Canvas for Confetti & Particles */
-    #confetti-canvas {
+    #fxCanvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       pointer-events: none;
-      z-index: 9999;
+      z-index: 999;
     }
 
-    /* Floating Hearts Background Container */
-    #floating-hearts-container {
+    /* Audio Toggle Button */
+    .music-btn {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .bg-floating-heart {
-      position: absolute;
-      font-size: 1.2rem;
-      opacity: 0.6;
-      animation: floatUp 8s linear infinite;
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(105vh) scale(0.8) rotate(0deg);
-        opacity: 0;
-      }
-      20% { opacity: 0.7; }
-      80% { opacity: 0.7; }
-      100% {
-        transform: translateY(-10vh) scale(1.2) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    .floating-music-btn {
-      position: fixed;
-      top: 16px;
-      right: 16px;
+      top: 18px;
+      right: 18px;
       z-index: 1000;
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #ffffff;
-      border: 2px solid var(--pastel-pink-dark);
-      color: var(--accent-pink);
+      background: var(--paper-white);
+      border: 2px solid var(--pastel-pink);
+      border-radius: 50px;
+      padding: 8px 16px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      box-shadow: 0 4px 12px rgba(255, 107, 139, 0.25);
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      color: var(--pastel-pink-dark);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
       cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .floating-music-btn:active {
-      transform: scale(0.9);
+    .music-btn:active {
+      transform: scale(0.95);
     }
 
-    .floating-music-btn.playing {
-      animation: spinSlow 6s linear infinite;
-      background: var(--pastel-pink);
-    }
-
-    @keyframes spinSlow {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
+    /* Screen Management */
     .screen {
       display: none;
-      width: 100%;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px 20px 60px;
       min-height: 100vh;
-      padding: 24px 20px 60px 20px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      position: relative;
-      z-index: 2;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
     }
 
     .screen.active {
       display: flex;
       opacity: 1;
+      transform: translateY(0);
     }
 
-    /* Helper Utilities */
-    .text-center { text-align: center; }
-    .w-full { width: 100%; }
-    .font-hand { font-family: var(--font-hand); }
-    
-    .badge {
-      display: inline-block;
-      padding: 6px 16px;
-      background: var(--pastel-purple);
-      color: #7E22CE;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      margin-bottom: 12px;
+    /* UI Cards & Scrapbook Container */
+    .scrapbook-card {
+      background: var(--paper-white);
+      border-radius: var(--radius-card);
+      padding: 28px 22px;
+      width: 100%;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      border: 2px dashed rgba(255, 133, 161, 0.3);
+      text-align: center;
     }
 
+    .scrapbook-tape {
+      position: absolute;
+      width: 90px;
+      height: 26px;
+      background: var(--tape-color);
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border-left: 2px dashed rgba(0,0,0,0.08);
+      border-right: 2px dashed rgba(0,0,0,0.08);
+      z-index: 2;
+    }
+
+    /* Typography */
+    h1, h2 {
+      font-family: var(--font-display);
+      color: var(--text-dark);
+      line-height: 1.3;
+    }
+
+    .handwritten {
+      font-family: var(--font-hand);
+      font-size: 1.8rem;
+      color: var(--pastel-pink-dark);
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      margin-bottom: 20px;
+    }
+
+    /* Buttons */
     .btn-primary {
-      background: linear-gradient(135deg, #FF8EA5 0%, #FF6B8B 100%);
-      color: white;
+      background: linear-gradient(135deg, #ff85a1, #ff6b8b);
+      color: #fff;
       border: none;
-      padding: 16px 32px;
-      font-size: 1.1rem;
-      font-weight: 700;
       border-radius: 50px;
-      box-shadow: 0 8px 20px rgba(255, 107, 139, 0.35);
+      padding: 16px 32px;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(255, 107, 139, 0.3);
+      transition: all 0.2s ease;
+      width: 100%;
+      margin-top: 20px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      margin-top: 20px;
-      text-decoration: none;
+      gap: 10px;
     }
 
     .btn-primary:active {
-      transform: scale(0.95);
+      transform: scale(0.97);
       box-shadow: 0 4px 10px rgba(255, 107, 139, 0.2);
     }
 
-    .pin-card {
-      background: var(--card-bg);
-      border-radius: 28px;
-      padding: 28px 24px;
-      width: 100%;
-      box-shadow: var(--shadow-soft);
-      border: 2px solid #FFF0F3;
-      text-align: center;
-    }
-
-    .pin-heart-icon {
-      font-size: 3.2rem;
-      margin-bottom: 8px;
+    /* SCREEN 1: SECRET PIN */
+    .envelope-icon {
+      font-size: 4rem;
+      margin-bottom: 10px;
       display: inline-block;
-      animation: pulseHeart 1.8s infinite alternate ease-in-out;
+      animation: pulseHeart 2s infinite ease-in-out;
       cursor: pointer;
     }
 
-    @keyframes pulseHeart {
-      0% { transform: scale(1); }
-      100% { transform: scale(1.18) rotate(4deg); }
-    }
-
-    .pin-dots {
+    .pin-input-container {
       display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin: 24px 0;
-    }
-
-    .pin-dot {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      border: 2px solid var(--pastel-pink-dark);
-      background: transparent;
-      transition: all 0.2s ease;
-    }
-
-    .pin-dot.filled {
-      background: var(--accent-pink);
-      border-color: var(--accent-pink);
-      transform: scale(1.15);
-      box-shadow: 0 0 10px rgba(255, 107, 139, 0.5);
-    }
-
-    .keypad-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      max-width: 280px;
-      margin: 0 auto;
-    }
-
-    .key-btn {
-      background: #FDF2F4;
-      border: 1px solid #FFE4E8;
-      border-radius: 18px;
-      height: 56px;
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
+      margin: 24px 0 10px;
     }
 
-    .key-btn:active {
-      background: var(--pastel-pink);
-      transform: scale(0.92);
-    }
-
-    .shake-anim {
-      animation: shake 0.45s cubic-bezier(.36,.07,.19,.97) both;
-    }
-
-    @keyframes shake {
-      10%, 90% { transform: translate3d(-2px, 0, 0); }
-      20%, 80% { transform: translate3d(4px, 0, 0); }
-      30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
-      40%, 60% { transform: translate3d(6px, 0, 0); }
-    }
-
-    .intro-gif-box {
-      width: 180px;
-      height: 180px;
-      border-radius: 24px;
-      background: var(--pastel-pink);
-      margin: 20px auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      box-shadow: var(--shadow-soft);
-      border: 4px solid white;
-    }
-
-    .intro-gif-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .scrapbook-header {
-      margin-bottom: 24px;
+    .pin-box {
+      width: 54px;
+      height: 60px;
+      border: 2px solid var(--pastel-pink);
+      border-radius: 14px;
+      font-family: var(--font-display);
+      font-size: 1.6rem;
       text-align: center;
+      background: #fff;
+      color: var(--pastel-pink-dark);
+      outline: none;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.03);
+      transition: border-color 0.2s, transform 0.2s;
     }
 
-    .scrapbook-grid {
+    .pin-box:focus {
+      border-color: var(--pastel-pink-dark);
+      transform: scale(1.05);
+    }
+
+    .pin-error {
+      color: #e63946;
+      font-size: 0.88rem;
+      min-height: 22px;
+      margin-top: 8px;
+      font-weight: 600;
+    }
+
+    /* SCREEN 2: SURPRISE ANIMATION */
+    .surprise-gif-box {
       width: 100%;
+      height: 220px;
+      border-radius: 16px;
+      background: #fff5f7;
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0;
+      position: relative;
+      overflow: hidden;
+      border: 2px dashed var(--pastel-pink);
+    }
+
+    .floating-cake-doodle {
+      font-size: 5rem;
+      animation: floatDoodle 3s infinite ease-in-out;
+    }
+
+    /* SCREEN 3: PHOTO SCRAPBOOK */
+    .photo-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      width: 100%;
+      margin: 20px 0;
     }
 
     .polaroid-card {
-      background: white;
-      padding: 14px 14px 20px 14px;
-      border-radius: 4px;
+      background: #ffffff;
+      padding: 14px 14px 22px 14px;
+      border-radius: 8px;
       box-shadow: var(--shadow-polaroid);
-      position: relative;
+      transform: rotate(var(--rot, -1deg));
       transition: transform 0.3s ease;
-      transform: rotate(var(--rot, 0deg));
+      position: relative;
+      border: 1px solid #eaeaea;
     }
 
-    .polaroid-card:nth-child(odd) { --rot: -2.5deg; }
-    .polaroid-card:nth-child(even) { --rot: 2deg; }
-    .polaroid-card:nth-child(3n) { --rot: -1.2deg; }
+    .polaroid-card:nth-child(even) {
+      --rot: 1.5deg;
+    }
 
-    .polaroid-tape {
-      position: absolute;
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 24px;
-      background: rgba(255, 235, 205, 0.7);
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      backdrop-filter: blur(1px);
-      z-index: 5;
+    .polaroid-card:nth-child(3n) {
+      --rot: -2deg;
     }
 
     .polaroid-img-wrapper {
       width: 100%;
-      aspect-ratio: 4/5;
-      background: #F3F4F6;
-      border-radius: 2px;
+      height: 290px;
+      border-radius: 4px;
       overflow: hidden;
-      position: relative;
+      background: #f0f0f0;
     }
 
     .polaroid-img-wrapper img {
@@ -367,315 +290,378 @@
     }
 
     .polaroid-caption {
-      margin-top: 14px;
       font-family: var(--font-hand);
-      font-size: 1.45rem;
-      color: #333;
+      font-size: 1.5rem;
+      color: var(--text-dark);
+      margin-top: 14px;
       text-align: center;
-      line-height: 1.25;
-      font-weight: 700;
     }
 
-    .scratch-grid {
-      display: grid;
-      grid-template-columns: 1fr;
+    /* SCREEN 4: CANVAS SCRATCH CARDS */
+    .scratch-container {
+      display: flex;
+      flex-direction: column;
       gap: 20px;
       width: 100%;
-      margin-top: 16px;
+      margin: 20px 0;
     }
 
-    .scratch-card-container {
+    .scratch-card-wrapper {
       position: relative;
       width: 100%;
-      height: 230px;
-      border-radius: 20px;
+      height: 180px;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: var(--shadow-soft);
-      background: white;
+      box-shadow: var(--shadow-polaroid);
+      background: #fff;
     }
 
-    .scratch-content {
+    .scratch-underlayer {
       position: absolute;
-      inset: 0;
-      padding: 16px;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
       display: flex;
       align-items: center;
-      gap: 14px;
-      background: linear-gradient(135deg, #FFF0F3 0%, #F3E8FF 100%);
-    }
-
-    .scratch-photo {
-      width: 100px;
-      height: 120px;
-      border-radius: 12px;
-      object-fit: cover;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      border: 3px solid white;
-      flex-shrink: 0;
-    }
-
-    .scratch-text {
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, #fff5f7, #eef7ff);
       font-family: var(--font-hand);
-      font-size: 1.35rem;
-      font-weight: 700;
+      font-size: 1.5rem;
       color: #333;
-      line-height: 1.3;
+      font-weight: 700;
+      line-height: 1.4;
+      z-index: 1;
+    }
+
+    .scratch-underlayer img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.15;
+      top: 0;
+      left: 0;
+    }
+
+    .scratch-underlayer-text {
+      position: relative;
+      z-index: 2;
+      padding: 10px;
     }
 
     .scratch-canvas {
       position: absolute;
-      inset: 0;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      z-index: 3;
-      cursor: pointer;
+      z-index: 2;
       touch-action: none;
+      cursor: pointer;
       transition: opacity 0.5s ease;
     }
 
+    /* SCREEN 5 & 6: LETTER */
     .letter-paper {
-      background: #FFFDF7;
-      background-image: repeating-linear-gradient(#FFFDF7 0px, #FFFDF7 27px, #E5E7EB 28px);
-      border-radius: 16px;
-      padding: 30px 22px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08), 0 0 0 1px rgba(0,0,0,0.03);
-      width: 100%;
-      position: relative;
-      margin-top: 16px;
-      border-left: 3px solid #FFB6C1;
-    }
-
-    .letter-paper::before {
-      content: "💌";
-      position: absolute;
-      top: -15px;
-      right: 20px;
-      font-size: 2rem;
-    }
-
-    .letter-paragraph {
+      background: #fffdf9;
+      background-image: repeating-linear-gradient(#fffdf9 0px, #fffdf9 27px, #e8f0fe 28px);
+      padding: 30px 20px;
+      border-radius: 12px;
+      border: 1px solid #ebd9c8;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       font-family: var(--font-hand);
-      font-size: 1.4rem;
-      line-height: 1.6;
-      color: #2D3748;
-      margin-bottom: 20px;
-      font-weight: 700;
-      opacity: 0;
-      transform: translateY(15px);
-      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      font-size: 1.45rem;
+      line-height: 1.8;
+      text-align: left;
+      color: #2b2b2b;
+      margin: 15px 0;
+      position: relative;
+      word-break: break-word;
     }
 
-    .letter-paragraph.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .letter-paper p {
+      margin-bottom: 16px;
     }
 
-    .final-card {
-      background: white;
-      border-radius: 28px;
-      padding: 32px 24px;
-      text-align: center;
-      box-shadow: var(--shadow-soft);
-      width: 100%;
-      border: 3px solid var(--pastel-pink);
+    .letter-signature {
+      text-align: right;
+      font-weight: bold;
+      color: var(--pastel-pink-dark);
+      margin-top: 20px;
     }
 
-    .big-cake-icon {
-      font-size: 4.5rem;
-      animation: floatCake 3s ease-in-out infinite;
-      margin-bottom: 12px;
+    /* SCREEN 7: FINAL CELEBRATION */
+    .celebration-title {
+      font-size: 2.2rem;
+      color: var(--pastel-pink-dark);
+      margin-bottom: 10px;
+      animation: bounceText 1s infinite alternate ease-in-out;
     }
 
-    @keyframes floatCake {
+    .floating-stickers-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
+    .floating-sticker {
+      background: var(--pastel-yellow);
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #555;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.05);
+      transform: rotate(var(--r, 0deg));
+      animation: floatSticker 3s infinite ease-in-out alternate;
+    }
+
+    /* ANIMATIONS */
+    @keyframes pulseHeart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    @keyframes floatDoodle {
       0%, 100% { transform: translateY(0) rotate(0deg); }
       50% { transform: translateY(-10px) rotate(4deg); }
     }
 
-    /* Floating Random Toast Messages */
-    .toast-msg {
+    @keyframes floatSticker {
+      0% { transform: translateY(0) rotate(var(--r, 0deg)); }
+      100% { transform: translateY(-6px) rotate(calc(var(--r, 0deg) + 3deg)); }
+    }
+
+    @keyframes bounceText {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    /* Toast Message */
+    .toast-popup {
       position: fixed;
-      bottom: 80px;
+      bottom: 30px;
       left: 50%;
-      transform: translateX(-50%) translateY(50px);
-      background: rgba(255, 255, 255, 0.95);
-      border: 2px solid var(--pastel-pink-dark);
-      padding: 10px 20px;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--text-dark);
+      color: #fff;
+      padding: 12px 24px;
       border-radius: 30px;
+      font-family: var(--font-display);
       font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--accent-pink);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      z-index: 10000;
+      z-index: 2000;
       opacity: 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
       pointer-events: none;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      text-align: center;
+      width: 85%;
+      max-width: 360px;
     }
 
-    .toast-msg.show {
-      opacity: 1;
+    .toast-popup.show {
       transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
 
-    /* Reduced Motion Accessibility */
     @media (prefers-reduced-motion: reduce) {
       *, ::before, ::after {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Confetti Overlay Canvas -->
-  <canvas id="confetti-canvas"></canvas>
-
-  <!-- Background Animated Hearts -->
-  <div id="floating-hearts-container"></div>
-
-  <!-- Music Control Floating Button -->
-  <button id="music-btn" class="floating-music-btn" aria-label="Toggle Music" title="Play Music 🎵">
-    🎵
-  </button>
-
-  <!-- Audio Element for Optional Background Music -->
-  <audio id="bg-music" loop preload="none">
+  <!-- Floating Audio Element & Controls -->
+  <audio id="bgMusic" loop preload="auto">
     <source src="assets/music.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Floating Toast Messages Banner -->
-  <div id="toast" class="toast-msg"></div>
+  <button class="music-btn" id="musicToggle" onclick="toggleAudio()">
+    <span id="musicIcon">🎵</span>
+    <span id="musicText">Music: OFF</span>
+  </button>
 
-  <div id="app-container">
+  <!-- Particle Effect Canvas -->
+  <canvas id="fxCanvas"></canvas>
 
-    <!-- ========================================== -->
-    <!-- SCREEN 1: SECRET PIN                       -->
-    <!-- ========================================== -->
-    <section id="screen-pin" class="screen active">
-      <div class="pin-card">
-        <span class="badge">Secret Gift Unlocking 🔐</span>
-        <div class="pin-heart-icon" id="main-lock-heart">💖</div>
-        <h2 style="font-size: 1.1rem; color: var(--text-muted); font-weight: 500;">From: Gundrukeeeee 💗</h2>
-        <h1 style="font-size: 1.5rem; color: var(--accent-pink); margin-top: 2px;">To: My Mahila Mittarrrrrr</h1>
-        <p style="font-size: 0.95rem; margin-top: 10px; color: var(--text-main);">Something special is waiting for you...</p>
-        <p style="font-size: 0.9rem; font-weight: 600; margin-top: 6px; color: var(--accent-pink);">Enter the secret code 🔐</p>
+  <!-- Toast Popups -->
+  <div id="toast" class="toast-popup"></div>
 
-        <div class="pin-dots">
-          <div class="pin-dot"></div>
-          <div class="pin-dot"></div>
-          <div class="pin-dot"></div>
-          <div class="pin-dot"></div>
-        </div>
+  <!-- SCREEN 1: SECRET PIN -->
+  <section id="screen1" class="screen active">
+    <div class="scrapbook-card">
+      <div class="scrapbook-tape"></div>
+      <div class="envelope-icon" onclick="handleHeartTap()">💌</div>
+      <p class="handwritten" style="font-size: 1.4rem;">From: Gundrukeeeee 💗</p>
+      <p class="handwritten" style="font-size: 1.2rem; color: var(--text-muted);">To: My Mahila Mittarrrrrr</p>
+      
+      <h2 style="margin-top: 15px; font-size: 1.3rem;">Something special is waiting for you...</h2>
+      <p class="subtitle">Enter the secret code 🔐</p>
 
-        <div class="keypad-grid">
-          <button class="key-btn" data-key="1">1</button>
-          <button class="key-btn" data-key="2">2</button>
-          <button class="key-btn" data-key="3">3</button>
-          <button class="key-btn" data-key="4">4</button>
-          <button class="key-btn" data-key="5">5</button>
-          <button class="key-btn" data-key="6">6</button>
-          <button class="key-btn" data-key="7">7</button>
-          <button class="key-btn" data-key="8">8</button>
-          <button class="key-btn" data-key="9">9</button>
-          <button class="key-btn" data-key="clear" style="font-size: 0.85rem; color: #EF4444;">CLEAR</button>
-          <button class="key-btn" data-key="0">0</button>
-          <button class="key-btn" data-key="back">⌫</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SCREEN 2: SURPRISE INTRO                   -->
-    <!-- ========================================== -->
-    <section id="screen-intro" class="screen">
-      <div class="text-center w-full" style="padding: 20px 0;">
-        <span class="badge">A Surprise Prepared 👀✨</span>
-        <h1 style="font-size: 2.2rem; color: var(--accent-pink); margin-top: 8px;">Hey Bhonduuuuu... 🥺💗</h1>
-        <p style="font-size: 1.15rem; margin-top: 8px; color: var(--text-main);">I made something for you.</p>
-        <p style="font-size: 1rem; margin-top: 4px; color: var(--text-muted);">Are you ready for a little surprise?</p>
-
-        <div class="intro-gif-box">
-          <img id="intro-gif-img" src="assets/cute-surprise.gif" alt="Cute Surprise" onerror="this.onerror=null; this.src=getSvgPlaceholder('🎁');">
-        </div>
-
-        <p style="font-size: 0.95rem; font-style: italic; color: var(--text-muted); margin-top: 10px;">
-          Don't judge my creativity okay? 😂
-        </p>
-
-        <button id="btn-start-surprise" class="btn-primary">
-          YES 💖
-        </button>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SCREEN 3: MEMORY SCRAPBOOK                -->
-    <!-- ========================================== -->
-    <section id="screen-scrapbook" class="screen" style="justify-content: flex-start; padding-top: 40px;">
-      <div class="scrapbook-header">
-        <span class="badge">Digital Memory Book 📸</span>
-        <h1 style="font-size: 1.8rem; color: var(--accent-pink);">A little collection of our chaos 😂💗</h1>
-        <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 4px;">Some memories deserve their own little space.</p>
+      <div class="pin-input-container">
+        <input type="password" maxlength="1" class="pin-box" id="pin1" inputmode="numeric" onkeyup="movePinFocus(1, event)" />
+        <input type="password" maxlength="1" class="pin-box" id="pin2" inputmode="numeric" onkeyup="movePinFocus(2, event)" />
+        <input type="password" maxlength="1" class="pin-box" id="pin3" inputmode="numeric" onkeyup="movePinFocus(3, event)" />
+        <input type="password" maxlength="1" class="pin-box" id="pin4" inputmode="numeric" onkeyup="movePinFocus(4, event)" />
       </div>
 
-      <div class="scrapbook-grid" id="polaroid-container">
-        <!-- Polaroid cards dynamically loaded from CONFIG -->
+      <div id="pinError" class="pin-error"></div>
+
+      <button class="btn-primary" onclick="verifyPin()">UNLOCK SURPRISE 🔑</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 2: LITTLE SURPRISE -->
+  <section id="screen2" class="screen">
+    <div class="scrapbook-card">
+      <div class="scrapbook-tape"></div>
+      <h2>Hey Bhonduuuuu... 🥺💗</h2>
+      <p class="subtitle">I made something special just for you.</p>
+
+      <div class="surprise-gif-box">
+        <div class="floating-cake-doodle">🎂</div>
+        <p style="font-family: var(--font-hand); font-size: 1.4rem; color: var(--pastel-pink-dark); margin-top: 8px;">Are you ready for a little surprise?</p>
       </div>
 
-      <button id="btn-to-scratch" class="btn-primary" style="margin-top: 36px; margin-bottom: 20px;">
-        Next Surprise 👀✨
-      </button>
-    </section>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin: 10px 0;">Don't judge my creativity okay? 😂</p>
 
-    <!-- ========================================== -->
-    <!-- SCREEN 4: INTERACTIVE SCRATCH CARDS        -->
-    <!-- ========================================== -->
-    <section id="screen-scratch" class="screen" style="justify-content: flex-start; padding-top: 40px;">
-      <div class="text-center w-full" style="margin-bottom: 20px;">
-        <span class="badge">Interactive Magic ✨</span>
-        <h1 style="font-size: 1.8rem; color: var(--accent-pink);">Okayyy Bhondu... now scratch these 👀✨</h1>
-        <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 4px;">There's something hidden underneath...</p>
+      <button class="btn-primary" onclick="goToScreen(3)">YES, SHOW ME! 💗</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 3: PHOTO SCRAPBOOK -->
+  <section id="screen3" class="screen">
+    <div style="text-align: center; width: 100%;">
+      <h2 style="font-size: 1.5rem;">A little collection of our chaos 😂💗</h2>
+      <p class="subtitle">Scroll down through memory lane 👇</p>
+    </div>
+
+    <div class="photo-grid" id="photoScrapbookContainer">
+      <!-- Polaroid cards injected dynamically via JS -->
+    </div>
+
+    <button class="btn-primary" onclick="goToScreen(4)">Next Surprise 👀✨</button>
+  </section>
+
+  <!-- SCREEN 4: INTERACTIVE MEMORY SCRATCH CARDS -->
+  <section id="screen4" class="screen">
+    <div style="text-align: center; width: 100%;">
+      <h2 style="font-size: 1.5rem;">Okayy Bhondu... now scratch these 👀✨</h2>
+      <p class="subtitle">There's something hidden underneath each card!</p>
+    </div>
+
+    <div class="scratch-container" id="scratchContainer">
+      <!-- Scratch Cards dynamically rendered via JS -->
+    </div>
+
+    <button class="btn-primary" onclick="goToScreen(5)">Read My Letter 💌</button>
+  </section>
+
+  <!-- SCREEN 5: LETTER INTRO -->
+  <section id="screen5" class="screen">
+    <div class="scrapbook-card">
+      <div class="scrapbook-tape"></div>
+      <div style="font-size: 4rem; margin-bottom: 10px;">✉️</div>
+      <h2>Okay Bhondu...</h2>
+      <p style="font-family: var(--font-hand); font-size: 1.5rem; color: var(--pastel-pink-dark); margin: 10px 0;">
+        I have one more thing to tell you. 🥺💗
+      </p>
+      <p class="subtitle">So I wrote this little letter for my Mahila Mittarrrrrr...</p>
+
+      <button class="btn-primary" onclick="goToScreen(6)">OPEN MY LETTER 💌</button>
+    </div>
+  </section>
+
+  <!-- SCREEN 6: BIRTHDAY LETTER -->
+  <section id="screen6" class="screen">
+    <div style="text-align: center; width: 100%;">
+      <h2 style="font-size: 1.4rem; color: var(--pastel-pink-dark);">A Special Note For You 💌</h2>
+    </div>
+
+    <div class="letter-paper">
+      <p>HAPPIEST BIRTHDAYYYYY TO MY MAHILA MITTARRRRRRR 🥳🎂😭💗</p>
+
+      <p>Happy Birthday, Bhonduuuuuuu 😂🫶🏻<br>
+      Another year older, but still the same bhondu I tolerate from miles away. 😭😂</p>
+
+      <p>Even though we’re far apart, distance has never made our friendship any less special. 🫂❤️ Thank you for all the random talks, stupid arguments, unnecessary drama, endless laughs, and all the countless memories. 😂</p>
+
+      <p>I’m genuinely lucky to have a bestie like you. 🫶🏻</p>
+
+      <p>I hope this year brings you lots of happiness, success, peace, good health, and everything you wish for. 😭💗</p>
+
+      <p>No matter how far apart we are, you’ll always be my Mahila Mittarrrrrr. 🤝😂</p>
+
+      <p>One day, we’ll finally meet and laugh about all the crazy memories we’ve made from miles apart. 😂🫂</p>
+
+      <p>HAPPIEST BIRTHDAYYYYY BHONDUUUUUUUU 🎂🥳💗😭<br>
+      ENJOY YOUR DAY, MAHILA MITTARRRR! 🫶🏻✨<br>
+      And pleaseeee, never stop being the same crazy Bhondu I know. 😂🫶🏻</p>
+
+      <div class="letter-signature">
+        — From your Gundrukeeeee 🤝😂💗
+      </div>
+    </div>
+
+    <button class="btn-primary" onclick="goToScreen(7)">One More Surprise 👀🎁</button>
+  </section>
+
+  <!-- SCREEN 7: FINAL CELEBRATION -->
+  <section id="screen7" class="screen">
+    <div class="scrapbook-card">
+      <div class="scrapbook-tape"></div>
+      <div style="font-size: 4.5rem; margin-bottom: 10px;">🎁</div>
+      <h1 class="celebration-title">HAPPIEST BIRTHDAY, BHONDUUUUU 💗🎂</h1>
+      
+      <p style="font-family: var(--font-hand); font-size: 1.6rem; color: var(--text-dark); margin: 15px 0;">
+        "Distance is temporary. Our memories are not. 🫂"
+      </p>
+
+      <div class="floating-stickers-wrapper">
+        <div class="floating-sticker" style="--r: -3deg;">Still tolerating you 😂</div>
+        <div class="floating-sticker" style="--r: 2deg;">Mahila Mittar supremacy 🤝</div>
+        <div class="floating-sticker" style="--r: -2deg;">Distance = skill issue 😭</div>
+        <div class="floating-sticker" style="--r: 4deg;">Bestie mode: permanently ON 🫂</div>
+        <div class="floating-sticker" style="--r: -4deg;">Don't get emotional now 😭😂</div>
+        <div class="floating-sticker" style="--r: 1deg;">Yes, I actually made all this for you 😂💗</div>
       </div>
 
-      <div class="scratch-grid" id="scratch-container">
-        <!-- Scratch cards dynamically injected from CONFIG -->
-      </div>
+      <p class="handwritten" style="font-size: 1.5rem; color: var(--pastel-pink-dark); margin-top: 15px;">
+        — From your Gundrukeeeee 🤝😂
+      </p>
 
-      <button id="btn-to-letter-intro" class="btn-primary" style="margin-top: 32px; margin-bottom: 20px; display: none;">
-        Continue to Letter 💌
-      </button>
-    </section>
+      <button class="btn-primary" onclick="triggerCelebration()">CELEBRATE AGAIN! 🎉</button>
+      <button class="btn-primary" style="background: #e2daf8; color: #4a3e6d; margin-top: 10px; box-shadow: none;" onclick="replayExperience()">Replay From The Beginning 🔄</button>
+    </div>
+  </section>
 
-    <!-- ========================================== -->
-    <!-- SCREEN 5: LETTER INTRO                     -->
-    <!-- ========================================== -->
-    <section id="screen-letter-intro" class="screen">
-      <div class="text-center w-full">
-        <span class="badge">Heartbeat Moment 🥺</span>
-        <h1 style="font-size: 2rem; color: var(--accent-pink); margin-top: 10px;">Okay Bhondu...</h1>
-        <p style="font-size: 1.2rem; margin-top: 12px; color: var(--text-main); font-weight: 500;">
-          I have one more thing to tell you. 🥺💗
-        </p>
-        <p style="font-size: 1rem; color: var(--text-muted); margin-top: 8px;">
-          So I wrote this little letter...
-        </p>
-
-        <button id="btn-open-letter" class="btn-primary" style="margin-top: 28px;">
-          OPEN MY LETTER 💌
-        </button>
-      </div>
-    </section>
-
-    <!-- ========================================== -->
-    <!-- SCREEN 6: PERSONAL BIRTHDAY LETTER         -->
-    <!-- ========================================== -->
-    <section id="screen-letter" class="screen" style="justify-content: flex-start; padding-top: 36px;">
-      <div class="text-center w-full">
-        <span class="badge">From My Heart ✍️</span>
-        <h2 class="font-hand" style="font-size: 2.2rem; color: var(--accent-pink);">Okay Bhondu... 🥺💗</h2>
-        <p style="font-size: 0.9rem; color: var(--text-muted);">A little letter from Gundrukeeeee to you...</p>
-      </div>
-
-      <div class="letter-paper" id="letter-content-con
+  <!-- ==========================================
+       JAVASCRIPT CONFIGURATION & INTERACTION LOGIC
+       ========================================== -->
+  <script>
+    /* ==========================================
+       1. EDITABLE CONFIGURATION OBJECT
+       ========================================== */
+    const CONFIG = {
+      herNickname: "Bhonduuuuu",
+      myNickname: "Gundrukeeeee",
+      friendshipName: "Mahila Mittarrrrrr",
+      pin: "1234",
+      music: "assets/music.mp3",
+      
+      // Photos list from uploaded files
+      photos: [
+        { src: "assets/photo1.jpg", caption: "One of those memories 😂" },
+        { src: "assets/photo2.jpg", caption: "Still can't believe this happened 😭" },
+        { src: "assets/photo3.jpg", caption: "Mahila Mittarrrrrr moments 🫂" },
+        { src: 
